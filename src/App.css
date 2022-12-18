@@ -1,38 +1,52 @@
-.App {
-  text-align: center;
+/* #F7F4F3 
+#5B2333
+434242
+*/
+.main{
+    background-color:#F7F4F3 ;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header{
+    background-color: #5B2333;
+    color:#F7F4F3;
+    height: 60px;
+    margin: 1px;
+    text-align: center;
+    padding: 0px,40px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 40px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.primary-btn,
+.primary-btn:focus {
+    background: #5B2333;
+    color: white;
+    border: none;
+    box-shadow: 2px 2px 4px rgb(136, 132, 132);
+    border-radius: 15px;
+    padding: 5px;
+    width: 300px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.primary-btn:hover {
+    /* transition: all 0.3s ease-in-out; */
+    transform: scale(1.1);
+    background: #5B2333;
+    color: white;
+    border: none;
 }
-
-.App-link {
-  color: #61dafb;
+.question-card{
+    background-color:rgb(247, 247, 247);
+    border-radius: 15px;
+    border: none ;
+    box-shadow: 2px 2px 4px rgb(136, 132, 132);
+    width: 80%;
+    height: 400px
+   
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.question{
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #5B2333;
+    padding: 20px;
+    text-align: center;
+    
 }
