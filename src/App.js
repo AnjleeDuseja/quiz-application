@@ -10,40 +10,25 @@ import QuestionsService from "./Utils/QuestionsService";
 function App() {
   const questionsService = useMemo(() => new QuestionsService(), []);
   const [questionsData, setQuestionData] = useState([]);
-
-  // useEffect(() => {
-  //   questionsService
-  //     .getQuestions()
-  //     .then((response) => {
-  //       if (response.status == "200") {
-  //         setQuestionData(response.data.results);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log("Error: " + err);
-  //     });
-  // }, []);
+  const [index, setIndex] = useState(0);
+  const handleAns = (val, i) => {
+    console.log(questionsData);
+    questionsData[i] = { ...questionsData[i], selectedOpt: val };
+    if (index < questionsData.length - 1) {
+      setIndex(index + 1);
+    }
+  };
   useEffect(() => {
-    setQuestionData([
-      {
-        question: "what is computer",
-        options: ["machine", "toy", "school", "nothing"],
-        correctAns: "machine",
-        userAns: "",
-      },
-      {
-        question: "what is excel",
-        options: ["machine", "toy", "school", "software"],
-        correctAns: "software",
-        userAns: "",
-      },
-      {
-        question: "what is keyboard",
-        options: ["machine", "hardware", "school", "nothing"],
-        correctAns: "hardware",
-        userAns: "",
-      },
-    ]);
+    questionsService
+      .getQuestions()
+      .then((response) => {
+        if (response.status == "200") {
+          setQuestionData(questionsService.loadQuestion(response.data.results));
+        }
+      })
+      .catch((err) => {
+        console.log("Error: " + err);
+      });
   }, []);
   return (
     <Router>
@@ -51,9 +36,18 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/quiz"
-          element={<Question questionsData={questionsData} />}
+          element={
+            <Question
+              questionsData={questionsData}
+              handleAns={handleAns}
+              index={index}
+            />
+          }
         />
-        <Route path="/result" element={<Result data={questionsData} />} />
+        <Route
+          path="/result"
+          element={<Result questionsData={questionsData} score={8} />}
+        />
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>

@@ -3,7 +3,7 @@ import { Card, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function QuestionItem({ questionD, index, handleAns }) {
-  const { question, options, correctAns, userAns } = questionD;
+  const { question, options } = questionD;
 
   return (
     <div className=" d-flex justify-content-center m-3">
@@ -24,7 +24,7 @@ function QuestionItem({ questionD, index, handleAns }) {
                 value={val}
                 label={val}
                 type="radio"
-                onChange={() => handleAns(val, index)}
+                onChange={() => handleAns(val, index - 1)}
                 style={{
                   width: "70%",
                   height: "50px",
