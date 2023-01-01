@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { Card, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { Form } from "react-bootstrap";
 
 function QuestionItem({ questionD, index, handleAns }) {
   const { question, options } = questionD;

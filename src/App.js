@@ -9,24 +9,28 @@ import QuestionsService from "./Utils/QuestionsService";
 
 function App() {
   const questionsService = useMemo(() => new QuestionsService(), []);
+
   const [questionsData, setQuestionData] = useState([]);
   const [index, setIndex] = useState(0);
   const handleAns = (val, i) => {
-    console.log(questionsData);
     questionsData[i] = { ...questionsData[i], selectedOpt: val };
-    if (index < questionsData.length - 1) {
+    if (index < questionsData.length) {
       setIndex(index + 1);
     }
+  };
+  const handleRetry = () => {
+    window.location.pathname = "/";
   };
   useEffect(() => {
     questionsService
       .getQuestions()
       .then((response) => {
-        if (response.status == "200") {
+        if (response.status === "200") {
           setQuestionData(questionsService.loadQuestion(response.data.results));
         }
       })
       .catch((err) => {
+        setIndex(-1);
         console.log("Error: " + err);
       });
   }, []);
@@ -46,7 +50,13 @@ function App() {
         />
         <Route
           path="/result"
-          element={<Result questionsData={questionsData} score={8} />}
+          element={
+            <Result
+              questionsData={questionsData}
+              score={8}
+              handleRetry={handleRetry}
+            />
+          }
         />
         <Route path="*" element={<Error />} />
       </Routes>
