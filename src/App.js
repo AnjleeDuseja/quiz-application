@@ -25,7 +25,7 @@ function App() {
     questionsService
       .getQuestions()
       .then((response) => {
-        if (response.status === "200") {
+        if (response.status == "200") {
           setQuestionData(questionsService.loadQuestion(response.data.results));
         }
       })
