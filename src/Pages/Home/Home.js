@@ -12,7 +12,7 @@ function Home() {
       <div className="d-flex justify-content-center">
         <img src={homeImg} alt="bannerImg" width="400px" />
       </div>
-      <PrimaryBtn name="Let's Start" handleStart={() => navigate("/quiz")} />
+      <PrimaryBtn name="Let's Start Quiz" handleStart={() => navigate("/quiz")} />
     </div>
   );
 }
